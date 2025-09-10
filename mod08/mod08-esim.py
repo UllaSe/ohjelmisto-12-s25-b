@@ -32,3 +32,29 @@ print(result[0][1])
 # tulostetaan tulosjoukko muotoiltuna
 for country in result:
     print(f"Maan {country[0]} maakoodi on: {country[1]}")
+
+# funktio, joka hakee maan se koodin perusteella
+def get_country_name_by_code(code):
+    sql = f"SELECT name FROM country WHERE iso_country = '{code}'"
+    cursor = connection.cursor()
+    cursor.execute(sql)
+    result = cursor.fetchone()
+    # jos tulosjoukko on tyhjä
+    if result:  # sama kuin result != None:
+        return result[0]
+    return "Ei löydy"
+
+# "käyttöliittymä maahakusovellukselle"
+country_code = input("Anna maakoodi: ")
+country = get_country_name_by_code(country_code)
+print(f"Maakoodi: {country_code}, hakutulos: {country}")
+
+# SQL insert esimerkki, uuden maan lisäys country-tauluun
+def add_country(code, name):
+    sql = f"INSERT INTO country (iso_country, name) VALUES ('{code}', '{name}')"
+    cursor = connection.cursor()
+    # HUOM: kaatuu sql-virheeseen, jos yritetään syöttää samaa pääavainarvoa uudelleen
+    # Virheenkäsittelyä käsitellään myöhemmin
+    cursor.execute(sql)
+    #print(cursor)
+#add_country('xyz', 'testcountry')
