@@ -1,7 +1,7 @@
 
 class Koira:
     count = 0
-    # konstruktori (rakentaja) -metodi ajetaan kun luokasta luodaan olio
+    # konstruktori (alustaja) -metodi ajetaan kun luokasta luodaan olio
     def __init__(self, name, weight):
         print(f"uusi koiraolio ({name}) luotu.")
         # nimi tallennetaan olion ominaisuudeksi self-viittauksen avulla
