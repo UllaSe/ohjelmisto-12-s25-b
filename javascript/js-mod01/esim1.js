@@ -19,16 +19,16 @@ let greeting = `Moi ${name}, ${age} v!`;
 console.log(greeting);
 
 // syötteen lukeminen
-name = prompt('Anna nimesi:');
+//name = prompt('Anna nimesi:');
 //console.log('käyttäjän syöte', userInput);
-age = parseInt(prompt('Anna ikäsi:'));
+//age = parseInt(prompt('Anna ikäsi:'));
 
-if (10 < age && age < 100) {
-    greeting = `Moi ${name}, ikäsi vuoden päästä ${age + 1} v!`;
-    document.querySelector('.output').textContent = greeting;
-} else {
-    console.log('Olet liian nuori tälle sivulle.');
-}
+//if (10 < age && age < 100) {
+ //   greeting = `Moi ${name}, ikäsi vuoden päästä ${age + 1} v!`;
+ //   document.querySelector('.output').textContent = greeting;
+// } else {
+//    console.log('Olet liian nuori tälle sivulle.');
+//}
 
 // Math-luokka
 // noppaesimerkki 1-6
@@ -48,4 +48,86 @@ switch (result) {
     default:
         console.log('et voittanut mitään');
 }
+
+// while, käytä kue et tiedä täysin monta kertaa toteutetaan
+// toistetaan aina kun ehto on tosi
+// eroaa do while sillä että ei välttämättä toteuteta kertaakaan
+// meillä on aina alkuehto joka tsekataan
+
+let count = 0;
+
+while (count < 5) {
+    console.log('Laskuri:', count);
+    count++;
+}
+
+// do-while
+// looppi halutaan suorittaa ainakin kerran ennen ehtoa
+//let number = 0;
+
+// do {
+//    console.log('Tämä tulostuu ainakin kerran vaikka ehto ei täyttyisi');
+//    number++;
+// } while (number < 5);
+
+let result2 = 3;
+
+do {
+   result2 = Math.floor(Math.random()*6)+1;
+   console.log(result2);
+} while (result2 < 6);
+
+
+let numero = 6;
+
+do {
+   console.log('Tämä tulostuu ainakin kerran vaikka ehto ei täyttyisi');
+   numero++;
+} while (numero < 6);
+
+// tilanteisiin jossa haluat toistaa loopin x määrä kertoja
+// esim kun käydään taulukon indeksit läpi
+
+for (let i = 1; i <= 10 ; i++) {
+    console.log('Luku on:', i);
+}
+
+// Tehtävä 1.
+for (let i = 10; i >= 1 ; i--) {
+    console.log(i);
+}
+
+let multiplication;
+for (let i = 1; i <= 5; i++) {
+    for (let j = 1; j <= 5; j++) {
+       multiplication = i * j;
+        console.log(i + ' times ' + j + ' is ' + multiplication + ".");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
