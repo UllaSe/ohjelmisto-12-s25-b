@@ -82,7 +82,7 @@ ages.sort((a, b) => b - a)
 console.log(ages);
 
 
-let hedelmat= ['Banaani', 'Mango', 'Päärynä', 'Omena'];
+const hedelmat= ['Banaani', 'Mango', 'Päärynä', 'Omena'];
 
 // shift()  poistetaan taulukon eka arvo ja otetaan muuttuja talteen
 const hedelma = hedelmat.shift();
@@ -103,3 +103,103 @@ console.log(hedelmat);
 
 // includes tsekkaa onko arvo taulukossa ja palauttaa true/false
 console.log(hedelmat.includes('Kiwi'));
+
+// object literal, olio
+// samankaltaienen kuin sanakirja pythonissa
+
+const duck = {
+    name: 'Aku',
+    age: 313
+}
+
+console.log(duck);
+console.log(duck[name]);
+console.log(duck['name']);
+
+// muutetaan arvoja
+duck['name'] = 'Aku Ankka';
+console.log(duck);
+
+// haetaan nimi ja muutetaan nimi
+console.log(duck.name);
+duck.name = 'Iines Ankka';
+console.log(duck);
+
+// uusi ominaisuus
+duck.profession = 'Working like a duck';
+// vaihdetaan arvo
+duck.profession = 'Swimming like a duck';
+console.log(duck);
+
+let sayHello = `Moikka ${duck.name}`;
+console.log(sayHello);
+
+// poista ominaisuus
+delete duck.profession;
+console.log(duck);
+
+
+const duck2 = {
+    name: 'Roope Ankka',
+    age: 80,
+    getInfo: function () {
+        return this.name + ' on ' + this.age + ' -vuotias';
+    }
+}
+
+let info = duck2.getInfo();
+console.log(info);
+
+// JS Funktiot!
+
+console.log(greet('Ulla'));
+// Ns. perinteinen funktion määrittely
+function greet(name) {
+    const greeting = `Moikka ${name}`
+    return greeting
+}
+
+// arrow / nuolifunktio, edellistä yksinkertaisempi
+// uudempi jamoderni tapa käyttää funktoita
+// voidaan kirjoittaa yksirivisenä, tällöin ei palauteta
+// käytetä return sanaa
+
+const nuoliFuntio = () => {
+    console.log('Ollaan nuolifunktiossa');
+};
+nuoliFuntio();
+
+const quadraticSum = (a, b) => (a * a + b * b);
+console.log(quadraticSum(3,5));
+
+// forEach voidaan iteroida taulukon jäsnet läpi
+
+const numerot = [12,23,34,45,5,67,23,34];
+numerot.forEach((num, index) => {
+    console.log(`Indeksi on ${index}, arvo on ${num}`);
+}) ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
