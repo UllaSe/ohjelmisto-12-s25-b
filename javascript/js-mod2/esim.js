@@ -172,7 +172,7 @@ nuoliFuntio();
 const quadraticSum = (a, b) => (a * a + b * b);
 console.log(quadraticSum(3,5));
 
-// forEach voidaan iteroida taulukon jäsnet läpi
+// forEach voidaan iteroida taulukon jäsenet läpi
 
 const numerot = [12,23,34,45,5,67,23,34];
 numerot.forEach((num, index) => {
