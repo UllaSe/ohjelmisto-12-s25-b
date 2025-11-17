@@ -18,6 +18,7 @@ async function asynchronousFunction() {                 // asynchronous function
         const response = await fetch('https://api.chucknorris.io/jokes/random');    // starting data download, fetch returns a promise which contains an object of type 'response'
         const jsonData = await response.json();          // retrieving the data retrieved from the response object using the json() function
         console.log(jsonData.value);    // log the result to the console
+        document.querySelector('.output').textContent = jsonData.value;
     } catch (error) {
         console.log(error.message);
     } finally {                                         // finally = this is executed anyway, whether the execution was successful or not
@@ -26,7 +27,7 @@ async function asynchronousFunction() {                 // asynchronous function
 }
 
 //synchronousFunction();
-//asynchronousFunction();
+asynchronousFunction();
 
 // pics.json latausesimerkki
 
@@ -45,14 +46,60 @@ fetch('pics.json').then(function (data) {
 
 // suositeltu moderni tapa (await-async)
 async function fetchPics(){
+    const picsDiv = document.querySelector('#pics');
     try {
-        const data = await fetch('pics.json');
-        const pics = await data.json();
+        const response = await fetch('pics.json');
+        //console.log('response status', response.status, response.statusText, response.ok);
+        // testataan ettei 404 yms. virhettä
+        if (!response.ok) {
+            throw new Error('response status no ok');
+        }
+        const pics = await response.json();
         console.log('pics', pics);
+        for (const pic of pics) {
+            const imgElem = document.createElement('img');
+            imgElem.src = pic.address;
+            imgElem.alt = pic.description;
+            picsDiv.append(imgElem);
+        }
     } catch (error) {
-        console.error(error);
+        console.log(error);
+        picsDiv.innerHTML = '<p>Kuvien lataamisessa ongelma</p>'
     }
 }
-fetchPics();
+
+// nappula kuvien hakemiseen
+document.querySelector('button').addEventListener('click', function () {
+    fetchPics();
+});
+
+// tv maze esimerkki
+
+// Datan haku, asynkroninen funktio
+async function searchTVMaze(searchString) {
+    // TODO: lisää virheenkäsittely
+    const response = await fetch('https://api.tvmaze.com/search/shows?q=' + searchString);
+    const results = await response.json();
+    console.log('tv maze results', results);
+    // tulokset voisi lisätä DOMiin tässä
+    return results;
+}
+
+// Hakulomakkeen käsittelijä
+const searchForm = document.querySelector('form#tvmaze');
+const inputText = searchForm.querySelector('input');
+// eventinkäsittelijä on määritelty async, koska funktiossa käytetetään await:ia
+searchForm.addEventListener('submit', async function(event) {
+    event.preventDefault();
+    if (inputText.value.length > 1 ) {
+        // hakufunktio on asynkroninen, joten se palauttaa promisen, joka pitää käsitellä await:illa
+        const tvMazeResults = await searchTVMaze(inputText.value);
+        // haun tulokset
+        console.log('event handler hakutulokset', tvMazeResults);
+        // tulokset voisi lisätä DOMiin tässä
+    }
+});
+
+
 
 console.log('the script ends');
